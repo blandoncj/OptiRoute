@@ -27,8 +27,7 @@ export const About = () => {
           <div className="relative group p-1.5 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 rounded-3xl shadow-2xl shadow-purple-500/40 hover:shadow-purple-400/60 transition-shadow duration-500">
             <div className="absolute -inset-2 bg-white/10 rounded-[1.6rem] opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse-slower group-hover:animate-none scale-95 group-hover:scale-100 blur-sm group-hover:blur-none"></div>
             <img
-              src="/src/assets/opti.png" // Reemplaza con tu ruta correcta
-              alt="Visualización de la app OptiRoute en un dispositivo"
+              src="assets/opti.png" alt="Visualización de la app OptiRoute en un dispositivo"
               className="w-60 h-60 sm:w-72 sm:h-72 lg:w-[340px] lg:h-[340px] object-contain rounded-2xl bg-slate-800/70 backdrop-blur-sm
                          transform transition-all duration-500 ease-out group-hover:scale-105 border-2 border-slate-700 group-hover:border-purple-500/50"
             />
