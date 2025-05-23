@@ -14,8 +14,31 @@ import {
 } from '@heroicons/react/24/solid'
 import { useEffect, useMemo, useState } from 'react'
 
+const iconMapping = {
+  UserGroupIcon,
+  MapPinIcon,
+  TruckIcon,
+  DevicePhoneMobileIcon,
+  EyeIcon,
+  ExclamationTriangleIcon,
+  CodeBracketIcon,
+  CogIcon,
+  WrenchScrewdriverIcon,
+  PresentationChartLineIcon
+}
+
+type IconName = keyof typeof iconMapping;
+
+interface RequirementItem {
+  title: string;
+  description: string;
+  iconName: IconName;
+  color: string;
+  bgColor: string;
+}
+
 export const Requirements = () => {
-  const requirementsData = [
+  const requirementsData: RequirementItem[] = [
     { title: 'Registro y Autenticación Segura', description: 'Roles definidos (admin, conductor, cliente) con acceso seguro y personalizado al sistema.', iconName: 'UserGroupIcon', color: 'text-sky-400', bgColor: 'bg-sky-500/10' },
     { title: 'Gestión Inteligente de Rutas', description: 'Creación, edición y eliminación de rutas personalizadas con optimización dinámica en tiempo real.', iconName: 'MapPinIcon', color: 'text-emerald-400', bgColor: 'bg-emerald-500/10' },
     { title: 'Asignación Eficiente', description: 'Vinculación ágil de vehículos a rutas y asignación inteligente de conductores disponibles.', iconName: 'TruckIcon', color: 'text-amber-400', bgColor: 'bg-amber-500/10' },
@@ -28,18 +51,7 @@ export const Requirements = () => {
     { title: 'Reportes Operativos Detallados', description: 'Generación de informes sobre viajes, rendimiento de rutas, consumo y alertas de mantenimiento.', iconName: 'PresentationChartLineIcon', color: 'text-lime-400', bgColor: 'bg-lime-500/10' }
   ]
 
-  const iconComponents = useMemo(() => ({
-    UserGroupIcon,
-    MapPinIcon,
-    TruckIcon,
-    DevicePhoneMobileIcon,
-    EyeIcon,
-    ExclamationTriangleIcon,
-    CodeBracketIcon,
-    CogIcon,
-    WrenchScrewdriverIcon,
-    PresentationChartLineIcon
-  }), [])
+  const iconComponents = useMemo(() => iconMapping, [])
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [hasMounted, setHasMounted] = useState(false)
@@ -58,8 +70,8 @@ export const Requirements = () => {
   }
 
   const sectionMountClass = hasMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-  const titleMountClass = hasMounted ? 'opacity-100 translate-y-0 delay-200' : 'opacity-0 translate-y-5' // `delay-200` es estándar en Tailwind
-  const carouselMountClass = hasMounted ? 'opacity-100 translate-y-0 delay-300' : 'opacity-0 translate-y-5' // `delay-300` es estándar en Tailwind
+  const titleMountClass = hasMounted ? 'opacity-100 translate-y-0 delay-200' : 'opacity-0 translate-y-5'
+  const carouselMountClass = hasMounted ? 'opacity-100 translate-y-0 delay-300' : 'opacity-0 translate-y-5'
 
   return (
     <section
@@ -90,7 +102,7 @@ export const Requirements = () => {
                   <div key={req.title} className="w-full flex-shrink-0">
                     <article className="bg-slate-800/80 backdrop-blur-lg p-6 sm:p-8 lg:p-10 border border-slate-700/60 h-full flex flex-col justify-start min-h-[380px] sm:min-h-[340px] md:min-h-[320px]">
                       <div className="flex items-start sm:items-center mb-5">
-                        {IconComponent && (
+                        {IconComponent && ( // Es una buena práctica verificar si el componente existe
                           <div className={`p-3 rounded-lg ${req.bgColor} mr-4 shadow-md flex-shrink-0`}>
                             <IconComponent className={`h-7 w-7 sm:h-8 sm:w-8 ${req.color}`} />
                           </div>
@@ -134,7 +146,7 @@ export const Requirements = () => {
                   onClick={() => setCurrentIndex(index)}
                   aria-label={`Ir a la funcionalidad ${index + 1}`}
                   className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ease-out
-                              ${currentIndex === index ? 'bg-indigo-400 scale-125' : 'bg-slate-600 hover:bg-slate-500'}`}
+                                  ${currentIndex === index ? 'bg-indigo-400 scale-125' : 'bg-slate-600 hover:bg-slate-500'}`}
                 />
               ))}
             </div>
